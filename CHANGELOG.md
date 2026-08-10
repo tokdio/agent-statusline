@@ -2,14 +2,13 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/); this project doesn't yet promise strict [SemVer](https://semver.org/) compatibility guarantees (it's a statusline script, not a library), but versions are tagged for anyone pinning a specific behavior.
 
-## [1.0.2] — 2026-08-10
+## [Unreleased]
 
-No behavior change from v1.0.1.
+### Added
 
-### Changed
+- Homebrew install path via a new tap, [`tokdio/tap`](https://github.com/tokdio/homebrew-tap) — `brew install tokdio/tap/agent-statusline`. This repo itself stays under the `poudelprakash` personal account; only the Homebrew tap lives under the [`tokdio`](https://github.com/tokdio) org, as a shared tap intended to host formulae (and future casks) for other tokdio projects too, not just this one.
 
-- Both this repo and the [Homebrew tap](https://github.com/tokdio/homebrew-agent-statusline) moved from the `poudelprakash` personal account to the [`tokdio`](https://github.com/tokdio) GitHub organization. Old URLs (`github.com/poudelprakash/agent-statusline`, `github.com/poudelprakash/homebrew-agent-statusline`) 301-redirect automatically. Homebrew users: `brew untap poudelprakash/agent-statusline` and `brew install tokdio/agent-statusline/agent-statusline` — the old tap path won't receive future formula updates.
-- The built script's header comment and all in-repo/tap references now point at the `tokdio` URLs.
+> **Note:** a `v1.0.2` was briefly tagged and released to move this whole repo under the `tokdio` org, then retracted (tag and release deleted) in favor of the narrower change above — only the Homebrew tap moves, not the repo. No public install ever used that release; skipping straight to the next real version bump rather than reusing `1.0.2`.
 
 ## [1.0.1] — 2026-08-10
 

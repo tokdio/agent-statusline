@@ -4,8 +4,8 @@
 
 **A three-row statusline for agentic coding CLIs — currently [Claude Code](https://claude.com/claude-code) — that turns the empty status slot into a live cockpit: repo state, PR/CI, cost, rate limits, and project health, at zero token cost.**
 
-[![Release](https://img.shields.io/github/v/release/tokdio/agent-statusline)](https://github.com/tokdio/agent-statusline/releases)
-[![ShellCheck](https://github.com/tokdio/agent-statusline/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/tokdio/agent-statusline/actions/workflows/shellcheck.yml)
+[![Release](https://img.shields.io/github/v/release/poudelprakash/agent-statusline)](https://github.com/poudelprakash/agent-statusline/releases)
+[![ShellCheck](https://github.com/poudelprakash/agent-statusline/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/poudelprakash/agent-statusline/actions/workflows/shellcheck.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Bash 3.2+](https://img.shields.io/badge/bash-3.2%2B-4EAA25?logo=gnubash&logoColor=white)](#)
 
@@ -60,15 +60,15 @@ This repo is named `agent-statusline`, not `claude-code-statusline`, so it doesn
 **Homebrew** (puts `agent-statusline` on your `PATH`, no `~/.claude` path to remember):
 
 ```bash
-brew install tokdio/agent-statusline/agent-statusline
+brew install tokdio/tap/agent-statusline
 ```
 
 `brew info agent-statusline` prints the exact `statusLine` block to paste into `~/.claude/settings.json`.
 
-**Or grab the prebuilt script directly** from the [latest release](https://github.com/tokdio/agent-statusline/releases/latest) — no clone, no build step:
+**Or grab the prebuilt script directly** from the [latest release](https://github.com/poudelprakash/agent-statusline/releases/latest) — no clone, no build step:
 
 ```bash
-curl -fsSL https://github.com/tokdio/agent-statusline/releases/latest/download/statusline-command.sh \
+curl -fsSL https://github.com/poudelprakash/agent-statusline/releases/latest/download/statusline-command.sh \
   -o ~/.claude/statusline-command.sh
 chmod +x ~/.claude/statusline-command.sh
 ```
@@ -76,7 +76,7 @@ chmod +x ~/.claude/statusline-command.sh
 **Or clone and build it yourself** if you plan to customize [row 3](#making-it-yours):
 
 ```bash
-git clone https://github.com/tokdio/agent-statusline.git
+git clone https://github.com/poudelprakash/agent-statusline.git
 cd agent-statusline
 ./build.sh   # writes ~/.claude/statusline-command.sh
 ```
@@ -107,7 +107,7 @@ Each module is independently ShellCheck-clean. The composition root (`99-main.sh
 Requires `bash`, `jq`, and `git`. `gh` (GitHub CLI) is optional, for the PR/CI row; `bd` ([Beads](https://github.com/steveyegge/beads)) is optional, for the Beads segment of row 3.
 
 ```bash
-git clone https://github.com/tokdio/agent-statusline.git
+git clone https://github.com/poudelprakash/agent-statusline.git
 cd agent-statusline
 ./build.sh
 ```
