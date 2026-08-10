@@ -12,7 +12,7 @@ modules=("$LIB_DIR"/*.sh)
 {
   echo '#!/bin/bash'
   echo '# GENERATED FILE — do not edit directly, your changes will be overwritten.'
-  echo '# Source: https://github.com/poudelprakash/agent-statusline'
+  echo '# Source: https://github.com/tokdio/agent-statusline'
   echo "# Edit a module under lib/, then run build.sh to regenerate this file."
   echo '#'
   echo '# Reads a JSON payload on stdin, renders three rows to stdout, exits 0 —'
