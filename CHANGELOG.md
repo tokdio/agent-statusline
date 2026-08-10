@@ -6,9 +6,7 @@ All notable changes to this project are documented here. Format follows [Keep a 
 
 ### Added
 
-- Homebrew install path via a new tap, [`tokdio/tap`](https://github.com/tokdio/homebrew-tap) — `brew install tokdio/tap/agent-statusline`. This repo itself stays under the `poudelprakash` personal account; only the Homebrew tap lives under the [`tokdio`](https://github.com/tokdio) org, as a shared tap intended to host formulae (and future casks) for other tokdio projects too, not just this one.
-
-> **Note:** a `v1.0.2` was briefly tagged and released to move this whole repo under the `tokdio` org, then retracted (tag and release deleted) in favor of the narrower change above — only the Homebrew tap moves, not the repo. No public install ever used that release; skipping straight to the next real version bump rather than reusing `1.0.2`.
+- Homebrew install path via [`tokdio/tap`](https://github.com/tokdio/homebrew-tap) — `brew install tokdio/tap/agent-statusline`.
 
 ## [1.0.1] — 2026-08-10
 
