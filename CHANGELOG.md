@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/); this project doesn't yet promise strict [SemVer](https://semver.org/) compatibility guarantees (it's a statusline script, not a library), but versions are tagged for anyone pinning a specific behavior.
 
+## [1.0.2] — 2026-08-10
+
+No behavior change from v1.0.1.
+
+### Changed
+
+- Both this repo and the [Homebrew tap](https://github.com/tokdio/homebrew-agent-statusline) moved from the `poudelprakash` personal account to the [`tokdio`](https://github.com/tokdio) GitHub organization. Old URLs (`github.com/poudelprakash/agent-statusline`, `github.com/poudelprakash/homebrew-agent-statusline`) 301-redirect automatically. Homebrew users: `brew untap poudelprakash/agent-statusline` and `brew install tokdio/agent-statusline/agent-statusline` — the old tap path won't receive future formula updates.
+- The built script's header comment and all in-repo/tap references now point at the `tokdio` URLs.
+
 ## [1.0.1] — 2026-08-10
 
 ### Changed
