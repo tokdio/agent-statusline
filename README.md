@@ -1,16 +1,57 @@
+<div align="center">
+
 # claude-code-statusline
 
-A three-row [Claude Code](https://claude.com/claude-code) statusline: repo/branch state with clickable links, open PR + CI status, session cost and duration, context budget, rate-limit pacing, prompt-cache health, and a live project-state row (GSD phase, OpenSpec proposals, [Beads](https://github.com/steveyegge/beads) issues) — built from modular, ShellCheck-clean bash.
+**A three-row [Claude Code](https://claude.com/claude-code) statusline that turns the empty status slot into a live cockpit — repo state, PR/CI, cost, rate limits, and project health, at zero token cost.**
 
-![Statusline screenshot: repo path and branch on the left, session name, uptime, API busy-ratio and cost on the right; second row shows model, context budget, rate-limit usage, and prompt-cache hit rate](assets/statusline-example.png)
+[![Release](https://img.shields.io/github/v/release/poudelprakash/claude-code-statusline)](https://github.com/poudelprakash/claude-code-statusline/releases)
+[![ShellCheck](https://github.com/poudelprakash/claude-code-statusline/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/poudelprakash/claude-code-statusline/actions/workflows/shellcheck.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Bash 3.2+](https://img.shields.io/badge/bash-3.2%2B-4EAA25?logo=gnubash&logoColor=white)](#)
 
-Row 3 (project state — GSD/OpenSpec/Beads) only renders when there's actually something to show; the screenshot above is a plain repo, so it's absent.
+<img src="assets/statusline-example.png" alt="Statusline screenshot: repo path and branch on the left, session name, uptime, API busy-ratio and cost on the right; second row shows model, context budget, rate-limit usage, and prompt-cache hit rate" width="820">
 
-Design writeup: [Your Statusline Is the Cheapest Feedback Loop in Agentic Coding](https://www.sharmaprakash.com.np/blog/statusline-the-five-second-feedback-loop/) and the follow-up, [Statusline v2: Three Rows, Clickable Links, and a Live Project HUD](https://www.sharmaprakash.com.np/blog/statusline-v2-three-rows-live-project-hud/).
+</div>
+
+Row 3 — project state (GSD phase, OpenSpec proposals, [Beads](https://github.com/steveyegge/beads) issues) — only renders when there's actually something to show; the screenshot above is a plain repo, so it's absent.
+
+## Contents
+
+- [Features](#features)
+- [Why](#why)
+- [Quickstart](#quickstart)
+- [Structure](#structure)
+- [Install](#install)
+- [Making it yours](#making-it-yours)
+- [Debugging](#debugging)
+- [License](#license)
+
+## Features
+
+- **Repo/branch state** — dirty marker, ahead/behind, clickable branch link to GitHub
+- **Open PR + CI** — review-state icon, cached `gh pr checks` rollup, clickable link to the PR
+- **Session cost & duration** — tiered cost color, burn rate ($/h), API busy-ratio (working vs. idle)
+- **Context budget** — used/window with free%, threshold-colored
+- **Rate-limit pacing** — not just usage%, but whether you're on track to hit the cap before it resets
+- **Prompt-cache health** — hit rate of the last request, colored
+- **Live project-state row** — GSD phase, OpenSpec proposal counts, Beads issue counts, read off disk and cached
+- **Fork-count discipline** — one `jq` call, one `git status` call; every render stays well under 20ms
 
 ## Why
 
 Claude Code ships the statusline slot empty and pipes a JSON payload to whatever command you configure — model, token usage, cost, context window, rate limits, PR/git state. It costs zero tokens (the model never sees it) and near-zero render time if you're careful about forks. Left blank, all of that is wasted.
+
+Design writeup: [Your Statusline Is the Cheapest Feedback Loop in Agentic Coding](https://www.sharmaprakash.com.np/blog/statusline-the-five-second-feedback-loop/) and the follow-up, [Statusline v2: Three Rows, Clickable Links, and a Live Project HUD](https://www.sharmaprakash.com.np/blog/statusline-v2-three-rows-live-project-hud/).
+
+## Quickstart
+
+```bash
+git clone https://github.com/poudelprakash/claude-code-statusline.git
+cd claude-code-statusline
+./build.sh   # writes ~/.claude/statusline-command.sh
+```
+
+Then add the `statusLine` block from [Install](#install) to `~/.claude/settings.json` and open a new Claude Code session.
 
 ## Structure
 

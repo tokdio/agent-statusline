@@ -7,6 +7,8 @@ set -euo pipefail
 LIB_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/lib" && pwd)"
 OUT="${1:-$HOME/.claude/statusline-command.sh}"
 
+modules=("$LIB_DIR"/*.sh)
+
 {
   echo '#!/bin/bash'
   echo '# GENERATED FILE — do not edit directly, your changes will be overwritten.'
@@ -16,7 +18,7 @@ OUT="${1:-$HOME/.claude/statusline-command.sh}"
   echo '# Reads a JSON payload on stdin, renders three rows to stdout, exits 0 —'
   echo '# the entire Claude Code statusline contract.'
   echo
-  for f in "$LIB_DIR"/*.sh; do
+  for f in "${modules[@]}"; do
     echo "# ════════ $(basename "$f") ════════"
     cat "$f"
     echo
@@ -24,4 +26,4 @@ OUT="${1:-$HOME/.claude/statusline-command.sh}"
 } > "$OUT"
 
 chmod +x "$OUT"
-echo "built $OUT ($(wc -l < "$OUT" | tr -d ' ') lines from $(ls "$LIB_DIR"/*.sh | wc -l | tr -d ' ') modules)"
+echo "built $OUT ($(wc -l < "$OUT" | tr -d ' ') lines from ${#modules[@]} modules)"

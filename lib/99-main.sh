@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# shellcheck disable=SC2034,SC2154  # SL_NOW/ci_state/ci_stale/model_col are set by sibling modules — only meaningful once build.sh flattens this file after them
 # Composition root: parses the JSON payload and decides what goes on each
 # row. Everything above this file in lib/ is a reusable helper with no
 # knowledge of the payload shape; this is the only file that reads it.
