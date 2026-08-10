@@ -57,7 +57,15 @@ This repo is named `agent-statusline`, not `claude-code-statusline`, so it doesn
 
 ## Quickstart
 
-Grab the prebuilt script straight from the [latest release](https://github.com/tokdio/agent-statusline/releases/latest) — no clone, no build step:
+**Homebrew** (puts `agent-statusline` on your `PATH`, no `~/.claude` path to remember):
+
+```bash
+brew install tokdio/agent-statusline/agent-statusline
+```
+
+`brew info agent-statusline` prints the exact `statusLine` block to paste into `~/.claude/settings.json`.
+
+**Or grab the prebuilt script directly** from the [latest release](https://github.com/tokdio/agent-statusline/releases/latest) — no clone, no build step:
 
 ```bash
 curl -fsSL https://github.com/tokdio/agent-statusline/releases/latest/download/statusline-command.sh \
@@ -65,7 +73,7 @@ curl -fsSL https://github.com/tokdio/agent-statusline/releases/latest/download/s
 chmod +x ~/.claude/statusline-command.sh
 ```
 
-Or clone and build it yourself if you plan to customize [row 3](#making-it-yours):
+**Or clone and build it yourself** if you plan to customize [row 3](#making-it-yours):
 
 ```bash
 git clone https://github.com/tokdio/agent-statusline.git
