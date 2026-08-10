@@ -45,13 +45,23 @@ Design writeup: [Your Statusline Is the Cheapest Feedback Loop in Agentic Coding
 
 ## Quickstart
 
+Grab the prebuilt script straight from the [latest release](https://github.com/poudelprakash/claude-code-statusline/releases/latest) — no clone, no build step:
+
+```bash
+curl -fsSL https://github.com/poudelprakash/claude-code-statusline/releases/latest/download/statusline-command.sh \
+  -o ~/.claude/statusline-command.sh
+chmod +x ~/.claude/statusline-command.sh
+```
+
+Or clone and build it yourself if you plan to customize [row 3](#making-it-yours):
+
 ```bash
 git clone https://github.com/poudelprakash/claude-code-statusline.git
 cd claude-code-statusline
 ./build.sh   # writes ~/.claude/statusline-command.sh
 ```
 
-Then add the `statusLine` block from [Install](#install) to `~/.claude/settings.json` and open a new Claude Code session.
+Either way, add the `statusLine` block from [Install](#install) to `~/.claude/settings.json` and open a new Claude Code session.
 
 ## Structure
 
