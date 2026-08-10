@@ -2,13 +2,9 @@
 
 A three-row [Claude Code](https://claude.com/claude-code) statusline: repo/branch state with clickable links, open PR + CI status, session cost and duration, context budget, rate-limit pacing, prompt-cache health, and a live project-state row (GSD phase, OpenSpec proposals, [Beads](https://github.com/steveyegge/beads) issues) — built from modular, ShellCheck-clean bash.
 
-```
-~/workspaces/2023/personal/sharmaprakash-astro (main*↑1)  #412✓ ci:ok @clipdex-wt3          up:1h13m api:64% $4.82(~$2.10/h)
-Fable 5 (max,think)  ctx:412k/1.0M (59% free)  5h:38%(2h10m)  7d:12%(4d)  cache:91%          lines +847/-322
-gsd:04-ingest ▶ 3/7  os new:1 wip:2  bd ready:6 wip:2
-```
+![Statusline screenshot: repo path and branch on the left, session name, uptime, API busy-ratio and cost on the right; second row shows model, context budget, rate-limit usage, and prompt-cache hit rate](assets/statusline-example.png)
 
-Row 3 only renders when there's actual project state to show — on a plain repo with none of the above, it simply isn't there.
+Row 3 (project state — GSD/OpenSpec/Beads) only renders when there's actually something to show; the screenshot above is a plain repo, so it's absent.
 
 Design writeup: [Your Statusline Is the Cheapest Feedback Loop in Agentic Coding](https://www.sharmaprakash.com.np/blog/statusline-the-five-second-feedback-loop/) and the follow-up, [Statusline v2: Three Rows, Clickable Links, and a Live Project HUD](https://www.sharmaprakash.com.np/blog/statusline-v2-three-rows-live-project-hud/).
 
