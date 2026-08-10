@@ -24,6 +24,7 @@ Row 3 — project state (GSD phase, OpenSpec proposals, [Beads](https://github.c
 - [Install](#install)
 - [Making it yours](#making-it-yours)
 - [Debugging](#debugging)
+- [Releases](#releases)
 - [License](#license)
 
 ## Features
@@ -115,6 +116,10 @@ After editing anything under `lib/`, re-run `./build.sh` to regenerate the deplo
 ## Debugging
 
 Every render writes the raw JSON payload Claude Code sent to `~/.cache/claude-statusline/last-input.json`, overwritten each time. When Claude Code ships a new payload field, `cat ~/.cache/claude-statusline/last-input.json | jq` shows you what's actually there instead of guessing from docs.
+
+## Releases
+
+Version history is in [CHANGELOG.md](CHANGELOG.md); the tag/build/publish process is documented in [RELEASE.md](RELEASE.md).
 
 ## License
 
