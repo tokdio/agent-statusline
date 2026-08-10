@@ -22,34 +22,30 @@ This project is versioned with git tags (`vX.Y.Z`) and GitHub Releases, with a p
    gh run watch --exit-status
    ```
 
-4. **Tag and push the tag:**
+4. **Tag and push the tag** (must point at a commit reachable from `main` — the release workflow refuses to run otherwise):
 
    ```bash
    git tag -a vX.Y.Z -m "vX.Y.Z - <one-line summary>"
    git push origin vX.Y.Z
    ```
 
-5. **Build the release artifact** from the tagged commit and attach it:
+   Pushing the tag triggers the [Release workflow](.github/workflows/release.yml), which ShellChecks the source, builds `dist/statusline-command.sh`, ShellChecks the build output, pulls the matching `## [X.Y.Z]` section out of `CHANGELOG.md` for the release notes, and runs `gh release create` with the artifact attached. Watch it:
 
    ```bash
-   ./build.sh dist/statusline-command.sh
-   shellcheck dist/statusline-command.sh
-   gh release create vX.Y.Z \
-     --title "vX.Y.Z — <one-line summary>" \
-     --notes "$(sed -n '/## \[X.Y.Z\]/,/## \[/p' CHANGELOG.md | sed '$d')" \
-     --latest
-   gh release upload vX.Y.Z dist/statusline-command.sh
+   gh run watch --exit-status
    ```
 
-   (`dist/` is gitignored — it's a release artifact, not a tracked file. The `sed` pulls just the new section out of `CHANGELOG.md` for the release notes; adjust the range by hand if it grabs too much or too little.)
+   If the CHANGELOG section is missing, the workflow fails before creating anything — go back to step 1.
 
-6. **Verify the download works** before calling it done:
+5. **Verify the download works** before calling it done:
 
    ```bash
    curl -fsSL https://github.com/poudelprakash/agent-statusline/releases/latest/download/statusline-command.sh -o /tmp/verify.sh
    cmp /tmp/verify.sh dist/statusline-command.sh && shellcheck /tmp/verify.sh
    rm -f /tmp/verify.sh
    ```
+
+6. **The Homebrew tap picks it up on its own.** [`tokdio/homebrew-tap`](https://github.com/tokdio/homebrew-tap) runs a daily `brew bump-packages` check ([`bump.yml`](https://github.com/tokdio/homebrew-tap/blob/main/.github/workflows/bump.yml)) against this repo's tags and opens a PR bumping `Formula/agent-statusline.rb`'s `url`/`sha256` when a newer tag exists. No action needed here beyond tagging — but the PR still needs a human to review/merge and trigger `publish.yml`'s bottle pull.
 
 ## Versioning
 
