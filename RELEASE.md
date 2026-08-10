@@ -46,7 +46,7 @@ This project is versioned with git tags (`vX.Y.Z`) and GitHub Releases, with a p
 6. **Verify the download works** before calling it done:
 
    ```bash
-   curl -fsSL https://github.com/poudelprakash/claude-code-statusline/releases/latest/download/statusline-command.sh -o /tmp/verify.sh
+   curl -fsSL https://github.com/poudelprakash/agent-statusline/releases/latest/download/statusline-command.sh -o /tmp/verify.sh
    cmp /tmp/verify.sh dist/statusline-command.sh && shellcheck /tmp/verify.sh
    rm -f /tmp/verify.sh
    ```

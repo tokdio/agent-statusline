@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/); this project doesn't yet promise strict [SemVer](https://semver.org/) compatibility guarantees (it's a statusline script, not a library), but versions are tagged for anyone pinning a specific behavior.
 
+## [Unreleased]
+
+### Changed
+
+- Repository renamed `claude-code-statusline` → `agent-statusline`. GitHub redirects the old URL automatically. Reasoning: the project is Claude-Code-only today, but the design is CLI-agnostic — only `lib/99-main.sh`'s `jq` field paths are Claude-Code-specific. A name change now avoids a breaking rename later if support for another agentic CLI (e.g. Codex, once [openai/codex#17827](https://github.com/openai/codex/issues/17827) ships) is added.
+- README: added a Compatibility section stating current/planned CLI support explicitly.
+
 ## [1.0.0] — 2026-08-10
 
 Initial public release.

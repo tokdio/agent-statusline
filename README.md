@@ -1,11 +1,11 @@
 <div align="center">
 
-# claude-code-statusline
+# agent-statusline
 
-**A three-row [Claude Code](https://claude.com/claude-code) statusline that turns the empty status slot into a live cockpit — repo state, PR/CI, cost, rate limits, and project health, at zero token cost.**
+**A three-row statusline for agentic coding CLIs — currently [Claude Code](https://claude.com/claude-code) — that turns the empty status slot into a live cockpit: repo state, PR/CI, cost, rate limits, and project health, at zero token cost.**
 
-[![Release](https://img.shields.io/github/v/release/poudelprakash/claude-code-statusline)](https://github.com/poudelprakash/claude-code-statusline/releases)
-[![ShellCheck](https://github.com/poudelprakash/claude-code-statusline/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/poudelprakash/claude-code-statusline/actions/workflows/shellcheck.yml)
+[![Release](https://img.shields.io/github/v/release/poudelprakash/agent-statusline)](https://github.com/poudelprakash/agent-statusline/releases)
+[![ShellCheck](https://github.com/poudelprakash/agent-statusline/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/poudelprakash/agent-statusline/actions/workflows/shellcheck.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Bash 3.2+](https://img.shields.io/badge/bash-3.2%2B-4EAA25?logo=gnubash&logoColor=white)](#)
 
@@ -24,6 +24,7 @@ Row 3 — project state (GSD phase, OpenSpec proposals, [Beads](https://github.c
 - [Install](#install)
 - [Making it yours](#making-it-yours)
 - [Debugging](#debugging)
+- [Compatibility](#compatibility)
 - [Releases](#releases)
 - [License](#license)
 
@@ -44,12 +45,22 @@ Claude Code ships the statusline slot empty and pipes a JSON payload to whatever
 
 Design writeup: [Your Statusline Is the Cheapest Feedback Loop in Agentic Coding](https://www.sharmaprakash.com.np/blog/statusline-the-five-second-feedback-loop/) and the follow-up, [Statusline v2: Three Rows, Clickable Links, and a Live Project HUD](https://www.sharmaprakash.com.np/blog/statusline-v2-three-rows-live-project-hud/).
 
+## Compatibility
+
+| CLI | Status |
+|---|---|
+| [Claude Code](https://claude.com/claude-code) | ✅ Supported — this is what `lib/99-main.sh` parses today. |
+| [Codex CLI](https://github.com/openai/codex) | ❌ Not yet possible. Codex's `tui.status_line` config only reorders built-in items — there's no external-command hook to plug into. A command-backed statusline modeled on Claude Code's is requested in [openai/codex#17827](https://github.com/openai/codex/issues/17827) but not shipped as of this writing. |
+| Others | Untested. If your CLI pipes a JSON payload to a configurable statusline command, most of `lib/` (formatting, git, rate-limit pacing, project state) is reusable — only `lib/99-main.sh`'s `jq` field paths are Claude-Code-specific. |
+
+This repo is named `agent-statusline`, not `claude-code-statusline`, so it doesn't need a rename if/when Codex (or another CLI) adds an equivalent hook — a Codex-specific parser module would live alongside `99-main.sh`, not replace it.
+
 ## Quickstart
 
-Grab the prebuilt script straight from the [latest release](https://github.com/poudelprakash/claude-code-statusline/releases/latest) — no clone, no build step:
+Grab the prebuilt script straight from the [latest release](https://github.com/poudelprakash/agent-statusline/releases/latest) — no clone, no build step:
 
 ```bash
-curl -fsSL https://github.com/poudelprakash/claude-code-statusline/releases/latest/download/statusline-command.sh \
+curl -fsSL https://github.com/poudelprakash/agent-statusline/releases/latest/download/statusline-command.sh \
   -o ~/.claude/statusline-command.sh
 chmod +x ~/.claude/statusline-command.sh
 ```
@@ -57,8 +68,8 @@ chmod +x ~/.claude/statusline-command.sh
 Or clone and build it yourself if you plan to customize [row 3](#making-it-yours):
 
 ```bash
-git clone https://github.com/poudelprakash/claude-code-statusline.git
-cd claude-code-statusline
+git clone https://github.com/poudelprakash/agent-statusline.git
+cd agent-statusline
 ./build.sh   # writes ~/.claude/statusline-command.sh
 ```
 
@@ -88,8 +99,8 @@ Each module is independently ShellCheck-clean. The composition root (`99-main.sh
 Requires `bash`, `jq`, and `git`. `gh` (GitHub CLI) is optional, for the PR/CI row; `bd` ([Beads](https://github.com/steveyegge/beads)) is optional, for the Beads segment of row 3.
 
 ```bash
-git clone https://github.com/poudelprakash/claude-code-statusline.git
-cd claude-code-statusline
+git clone https://github.com/poudelprakash/agent-statusline.git
+cd agent-statusline
 ./build.sh
 ```
 
